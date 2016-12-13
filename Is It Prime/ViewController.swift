@@ -16,15 +16,26 @@ class ViewController: UIViewController {
     
     @IBAction func checkPrimeButton(_ sender: Any) {
         let getUserNumber = Int(userNumber.text!)
-        var startSearch = getUserNumber
-        startSearch -= startSearch
+        var startSearch:Int
+        startSearch = getUserNumber! - 1
         
-        while (startSearch > 0 && isPrime) {
+        while (startSearch > 1 && isPrime) {
             print(startSearch)
             
-            startSearch -= startSearch
+            let remainder = getUserNumber! % startSearch
+            
+            if remainder == 0 {
+                isPrime = false
+            }
+            
+            startSearch = startSearch - 1
         }
         
+        if (isPrime) {
+            primeResult.text = "IS A PRIME NUMBER"
+        } else {
+            primeResult.text = "Is not a prime number"
+        }
         
     }
     
